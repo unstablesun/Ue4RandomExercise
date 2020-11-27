@@ -10,17 +10,51 @@ UCLASS()
 class UE4RANDOMEXERCISE_API AScanObjWorldSpawner : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+		UPROPERTY(EditDefaultsOnly, Category = "AScanObjWorldSpawner")
+		TSubclassOf<AActor> ActorToSpawn;
+
+
+public:
 	// Sets default values for this actor's properties
 	AScanObjWorldSpawner();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float spanX;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float spanY;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float incX;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float incY;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+	UFUNCTION()
+		void SpawnObjectA(FVector vec, FRotator rot);
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	float elaspedTime;
+	float maxTime;
+
+	float StartX;
+	float StartY;
+	float StoredX;
+	float StoredY;
+
+	FVector location;
+	FRotator rotation;
+
+	bool firstpass;
+	bool SpawnObjects;
+
+	int32 ObjectCount;
 
 };

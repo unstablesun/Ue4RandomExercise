@@ -10,17 +10,40 @@ UCLASS()
 class UE4RANDOMEXERCISE_API AScannableObject : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
-	// Sets default values for this actor's properties
+
+public:
 	AScannableObject();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UStaticMeshComponent* StaticMeshComp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		UMaterialInterface* MeshMaterial;
+
+	UFUNCTION()
+		void SetScanID(int32 id);
+
+	UFUNCTION()
+		FString GetScanObjString();
+
+
 protected:
-	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
+public:
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	void SetMeshMatArrays();
+
+	TArray<FString> meshNames;
+	TArray<FString> scanNames;
+	TArray<FString> materialNames;
+
+	TArray<UStaticMesh*> staticMeshInstArray;
+
+
+	int32 scanID;
+	FString scanObjString;
 
 };
