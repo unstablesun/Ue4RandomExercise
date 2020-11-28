@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ScannableObject.h"
 #include "ScanObjWorldSpawner.generated.h"
 
 UCLASS()
@@ -56,5 +57,11 @@ private:
 	bool SpawnObjects;
 
 	int32 ObjectCount;
+
+	void TurnOffPhysics();
+
+	TArray<AScannableObject*> scannableObjects;
+
+
 
 };

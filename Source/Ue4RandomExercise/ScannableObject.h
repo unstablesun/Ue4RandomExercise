@@ -42,7 +42,6 @@ private:
 
 	TArray<UStaticMesh*> staticMeshInstArray;
 
-
 	int32 scanID;
 	FString scanObjString;
 

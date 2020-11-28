@@ -53,6 +53,7 @@ void AScannableObject::BeginPlay()
 {
 	Super::BeginPlay();
 
+
 	int32 size = staticMeshInstArray.Num();
 	int32 s = FMath::RandRange(0, size - 1);
 	StaticMeshComp->SetStaticMesh(staticMeshInstArray[s]);

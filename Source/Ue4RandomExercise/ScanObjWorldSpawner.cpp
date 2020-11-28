@@ -1,7 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ScannableObject.h"
 #include "ScanObjWorldSpawner.h"
 
 // Sets default values
@@ -10,7 +9,7 @@ AScanObjWorldSpawner::AScanObjWorldSpawner()
 	PrimaryActorTick.bCanEverTick = true;
 
 	elaspedTime = 0;
-	maxTime = 0.05;
+	maxTime = 0.005;
 	firstpass = true;
 	SpawnObjects = true;
 
@@ -36,6 +35,8 @@ void AScanObjWorldSpawner::SpawnObjectA(FVector loc, FRotator rot)
 	AScannableObject* SpawnActorRef = GetWorld()->SpawnActor<AScannableObject>(ActorToSpawn, loc, rot, SpawnParams);
 
 	SpawnActorRef->SetScanID(++ObjectCount);
+
+	scannableObjects.Add(SpawnActorRef);
 }
 
 // Called every frame
@@ -88,12 +89,39 @@ void AScanObjWorldSpawner::Tick(float DeltaTime)
 				if (location.Y > StartY)
 				{
 					SpawnObjects = false;
+
 				}
 
 			}
-			rotation.Yaw += 10;
+
+			float yaw = FMath::FRandRange(0, 360);
+			rotation.Yaw = yaw;
+
+			float pitch = FMath::FRandRange(0, 360);
+			rotation.Pitch = pitch;
+
+			float roll = FMath::FRandRange(0, 360);
+			rotation.Roll = roll;
+
+		}
+	}
+	else
+	{
+		elaspedTime += DeltaTime;
+		if (elaspedTime >= 2)
+		{
+			elaspedTime = 0;
 		}
 	}
 
 }
+
+void AScanObjWorldSpawner::TurnOffPhysics()
+{
+	for (AScannableObject* Actor : scannableObjects)
+	{
+		Actor->StaticMeshComp->SetSimulatePhysics(false);
+	}
+}
+
 
