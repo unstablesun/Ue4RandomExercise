@@ -20,11 +20,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		UMaterialInterface* MeshMaterial;
 
-	UFUNCTION()
-		void SetScanID(int32 id);
+	void SetScanID(int32 id);
 
-	UFUNCTION()
-		FString GetScanObjString();
+	FString GetScanObjString();
 
 
 protected:

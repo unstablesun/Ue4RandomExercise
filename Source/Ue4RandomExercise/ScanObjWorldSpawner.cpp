@@ -11,11 +11,11 @@ AScanObjWorldSpawner::AScanObjWorldSpawner()
 	elaspedTime = 0;
 	maxTime = 0.005;
 	firstpass = true;
-	SpawnObjects = true;
 
 	location = GetActorLocation();
 	rotation = FRotator(0, 0, 0);
 
+	spawnState = SpawnState::init;
 
 	ObjectCount = 0;
 }
@@ -44,7 +44,13 @@ void AScanObjWorldSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (SpawnObjects)
+	switch (spawnState)
+	{
+	case SpawnState::init:
+		spawnState = SpawnState::spawn;
+		break;
+
+	case SpawnState::spawn:
 	{
 		elaspedTime += DeltaTime;
 		if (elaspedTime >= maxTime)
@@ -88,7 +94,7 @@ void AScanObjWorldSpawner::Tick(float DeltaTime)
 
 				if (location.Y > StartY)
 				{
-					SpawnObjects = false;
+					spawnState = SpawnState::wait;
 
 				}
 
@@ -104,15 +110,31 @@ void AScanObjWorldSpawner::Tick(float DeltaTime)
 			rotation.Roll = roll;
 
 		}
+
 	}
-	else
-	{
+	break;
+
+	case SpawnState::wait:
+
 		elaspedTime += DeltaTime;
-		if (elaspedTime >= 2)
+		if (elaspedTime >= 5)
 		{
 			elaspedTime = 0;
+			spawnState = SpawnState::physicsOff;
 		}
+
+		break;
+
+	case SpawnState::physicsOff:
+		TurnOffPhysics();
+		spawnState = SpawnState::idle;
+		break;
+
+	case SpawnState::idle:
+		break;
+
 	}
+
 
 }
 

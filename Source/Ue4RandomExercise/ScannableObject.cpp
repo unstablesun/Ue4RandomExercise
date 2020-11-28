@@ -33,6 +33,10 @@ AScannableObject::AScannableObject()
 	MeshMaterial = FoundMaterial.Object;
 	StaticMeshComp->SetMaterial(0, MeshMaterial);
 
+
+	scanObjString = TEXT("empty");
+	scanID = FMath::RandRange(0, 1000);
+
 }
 
 
@@ -76,9 +80,8 @@ void AScannableObject::BeginPlay()
 
 	StaticMeshComp->SetMaterial(0, dynamicMaterial);
 
-
 	const TCHAR* temp = *scanNames[s];;
-	scanObjString = FString::Printf(TEXT("scan%s%d"), temp, scanID);
+	scanObjString = FString::Printf(TEXT("%s"), temp);
 
 }
 
@@ -103,8 +106,6 @@ void AScannableObject::SetMeshMatArrays()
 	meshNames.Add(TEXT("StaticMesh'/Game/GameSim/Assets/rubicsmess.rubicsmess'"));
 	meshNames.Add(TEXT("StaticMesh'/Game/GameSim/Assets/shizzle.shizzle'"));
 
-
 	materialNames.Add(TEXT("Material'/Game/GameSim/Assets/M_Primary.M_Primary'"));
-
 
 }

@@ -54,7 +54,6 @@ private:
 	FRotator rotation;
 
 	bool firstpass;
-	bool SpawnObjects;
 
 	int32 ObjectCount;
 
@@ -63,5 +62,14 @@ private:
 	TArray<AScannableObject*> scannableObjects;
 
 
+	enum SpawnState
+	{
+		init,
+		spawn,
+		wait,
+		physicsOff,
+		idle
+	};
+	SpawnState spawnState;
 
 };

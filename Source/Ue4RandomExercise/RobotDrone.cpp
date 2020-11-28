@@ -114,13 +114,15 @@ bool ARobotDrone::WriteActorsToFile(TArray<AActor*> onScreenActors)
 
 	for (AActor* Actor : onScreenActors)
 	{
-		AScannableObject* ScanActor = Cast<AScannableObject>(Actor);
-		FString ActorLable = Actor->GetActorLabel();
-		//FString ActorScanStr = ScanActor->GetScanObjString(); //error not set yet
-		StringToWrite.Append(ActorLable);
-		StringToWrite.Append(TEXT(" : "));
-		//StringToWrite.Append(ActorScanStr);
-		StringToWrite.Append(FString::Printf(TEXT("\n")));
+		if (AScannableObject* ScanActor = Cast<AScannableObject>(Actor))
+		{
+			FString ActorLable = Actor->GetActorLabel();
+			FString ActorScanStr = ScanActor->GetScanObjString();
+			StringToWrite.Append(ActorLable);
+			StringToWrite.Append(TEXT(" : "));
+			StringToWrite.Append(ActorScanStr);
+			StringToWrite.Append(FString::Printf(TEXT("\n")));
+		}
 	}
 
 	//file is always new, no checks needed
