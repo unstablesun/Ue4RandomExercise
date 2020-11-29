@@ -55,6 +55,6 @@ Here is a screenshot of the Robot Child in action
 Navigating the playfield!
 ![Screenhot](ScreenShot3.png)
 
-Notes: ScannableObject should probably come from a factory.  I have wait time set to 0.1 and collision set to 30 but these can be set back to test standards on the RobotObjectBP in the level.  There are things I should clean up but I'm leaving this as is for now.
+Notes: ScannableObject should probably come from a factory.  Also need to move the static mesh component from RobotDroneBP to RobotDrone.cpp in order to complete the requirements of the test. I have wait time set to 0.1 and collision set to 30 but these can be set back to test standards on the RobotObjectBP in the level.  
 
 
