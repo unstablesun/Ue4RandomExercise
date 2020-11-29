@@ -1,7 +1,7 @@
 # Ue4RandomExercise
-This is a Ue4 programmers test I found online, the instructions are listed below.  The test took me 6 hours and the fluff took another 6.  By fluff I mean creating the level and generating the pieces as shown in this screen shot.
+This is a Ue4 programmers test I found online, the instructions are listed below.  The test took me 6 hours and the fluff took another 6.  By fluff I mean creating the level and generating the pieces as shown in this screen shot. And another 2 hours in testing and fixes.
 ![Screenhot](ScreenShot1.png)
-Most of the parameters for the Robot can be set in the level in the RobotDroneBP Object and RobotDroneBP_Child.  Only RobotDroneBP has screenshot and file write enabled (as they are both running at the same time).  The MBPPawnCamSetter object can set the camera to either Robot or leave the default overview camera so you zoom around and see the Robots in action.
+Most of the parameters for the Robot can be set in the level in the RobotDroneBP Object and RobotDroneBP_Child.  Only RobotDroneBP has screenshot and file write enabled (as they are both running at the same time).  The MBPPawnCamSetter object can set the camera to either Robot or leave the default overview camera so you zoom around and see the Robots in action.  It's interesting to note that the main Robot will detect the robot childs trail and eventually be boxed in LOL.
 
 ## Instructions (Start)
 ### Setup
@@ -50,3 +50,9 @@ When hitting Play In Editor, the viewport should be from the pov of the robot, a
 
 Here is a screenshot of the Robot Child in action
 ![Screenhot](ScreenShot2.png)
+Navigating the playfield!
+![Screenhot](ScreenShot3.png)
+
+Notes:  ScannableObject should probably come from a factory.  I have wait time set to 0.1 and collision set to 30 but these can be set back to test standards on the RobotObjectBP in the level.  There are things I should clean up but I'm leaving this as is for now.
+
+
