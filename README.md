@@ -3,6 +3,8 @@ This is a Ue4 programmers test I found online, the instructions are listed below
 ![Screenhot](ScreenShot1.png)
 Most of the parameters for the Robot can be set in the level in the RobotDroneBP Object and RobotDroneBP_Child.  Only RobotDroneBP has screenshot and file write enabled (as they are both running at the same time).  The MBPPawnCamSetter object can set the camera to either Robot or leave the default overview camera so you zoom around and see the Robots in action.  It's interesting to note that the main Robot will detect the robot childs trail and eventually be boxed in LOL.
 
+Using Unreal ver. 4.25.4
+
 ## Instructions (Start)
 ### Setup
 
@@ -53,6 +55,6 @@ Here is a screenshot of the Robot Child in action
 Navigating the playfield!
 ![Screenhot](ScreenShot3.png)
 
-Notes:  ScannableObject should probably come from a factory.  I have wait time set to 0.1 and collision set to 30 but these can be set back to test standards on the RobotObjectBP in the level.  There are things I should clean up but I'm leaving this as is for now.
+Notes: ScannableObject should probably come from a factory.  I have wait time set to 0.1 and collision set to 30 but these can be set back to test standards on the RobotObjectBP in the level.  There are things I should clean up but I'm leaving this as is for now.
 
 
